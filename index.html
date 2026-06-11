@@ -1,0 +1,1092 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Branditrite — The world's smartest signs &amp; displays</title>
+<meta name="description" content="Branditrite, a licensed SignRISE reseller in Australia. 72+ smart signs, displays and product replicas for retail, corporate and events. Attract foot traffic, leads and sales." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Instrument+Serif:ital@0;1&family=Geist:wght@300..700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* TRUE Branditrite palette — red + indigo/navy on white */
+    --bg:        #f6f7fb;
+    --bg-2:      #eef1f8;
+    --panel:     #ffffff;
+    --panel-2:   #f3f5fb;
+    --line:      #e4e8f1;
+    --line-2:    #d3dae8;
+    --ink:       #1b2236;
+    --ink-2:     #4a566e;
+    --muted:     #8a93a8;
+    /* brand */
+    --red:       #ee3524;   /* primary */
+    --red-deep:  #c8301f;
+    --red-soft:  #ff6a52;
+    --navy:      #2d368b;   /* indigo nav / headings */
+    --navy-2:    #3a4fa0;
+    --slate:     #334862;
+    --blue:      #0072b7;   /* accent blue */
+    --radius:    18px;
+    --radius-sm: 10px;
+    --max:       1240px;
+    --shadow-soft: 0 24px 60px -28px rgba(22,33,70,.30), 0 6px 18px -10px rgba(22,33,70,.12);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background: var(--bg); color: var(--ink);
+    font-family: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+    background-image:
+      radial-gradient(1200px 600px at 84% -8%, rgba(238,53,36,.09), transparent 60%),
+      radial-gradient(900px 560px at -8% 22%, rgba(45,54,139,.10), transparent 62%);
+  }
+  a{color:inherit; text-decoration:none}
+  button{font:inherit; cursor:pointer; border:0; background:none; color:inherit}
+  img{max-width:100%; display:block}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px; position:relative; z-index:3}
+  @media (max-width:640px){ .wrap{padding:0 20px} }
+
+  /* ─────── utility top bar ─────── */
+  .topbar{ background: var(--navy); color:#fff; font-size:13px }
+  .topbar .wrap{ display:flex; align-items:center; justify-content:space-between; height:42px; gap:16px }
+  .topbar a{ color:#fff; opacity:.92; transition:opacity .2s } .topbar a:hover{ opacity:1 }
+  .topbar .tb-left{ display:flex; gap:22px; align-items:center }
+  .topbar .tb-left .lbl{ opacity:.7 }
+  .topbar .tb-social{ display:flex; gap:14px; align-items:center }
+  .topbar .tb-social a{ display:grid; place-items:center }
+  @media (max-width:720px){ .topbar .tb-left .em{display:none} }
+  @media (max-width:520px){ .topbar{font-size:12px} .topbar .wrap{height:38px} }
+
+  /* ─────── nav ─────── */
+  .nav{ position:sticky; top:0; z-index:60; background: rgba(255,255,255,.86); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); border-bottom:1px solid var(--line) }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; height:78px; gap:18px }
+  .brand{ display:flex; align-items:center; gap:12px; font-family:"Fraunces", serif; letter-spacing:-.015em; font-size:27px; line-height:1 }
+  .logo-mark{ width:42px; height:42px; flex-shrink:0; filter: drop-shadow(0 3px 7px rgba(238,53,36,.30)); }
+  .brand .word{ font-weight:600; color: var(--navy) }
+  .brand .word .it{ color: var(--red) }
+  .brand-lg{ font-size:38px; gap:15px } .brand-lg .logo-mark{ width:54px; height:54px }
+  @media (max-width:640px){ .brand{font-size:22px} .logo-mark{width:36px; height:36px} }
+
+  .menu{ display:flex; align-items:center; gap:4px }
+  .menu > li{ list-style:none; position:relative }
+  .menu > li > a, .menu > li > button{
+    display:inline-flex; align-items:center; gap:6px; padding:10px 14px; font-size:14.5px; color:var(--ink-2); border-radius:8px; font-weight:500; transition:color .2s, background .2s;
+  }
+  .menu > li > a:hover, .menu > li > button:hover, .menu > li.open > button{ color:var(--navy); background: rgba(45,54,139,.06) }
+  .menu .caret{ width:9px; height:9px; opacity:.6; transition:transform .2s } .menu li.open .caret{ transform:rotate(180deg) }
+  .submenu{
+    position:absolute; top:calc(100% + 8px); left:0; min-width:248px; background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    box-shadow: var(--shadow-soft); padding:8px; opacity:0; visibility:hidden; transform: translateY(6px); transition: opacity .18s, transform .18s, visibility .18s; z-index:70;
+  }
+  .menu li:hover .submenu, .menu li.open .submenu{ opacity:1; visibility:visible; transform: translateY(0) }
+  .submenu a{ display:block; padding:10px 12px; font-size:14px; color:var(--ink-2); border-radius:9px; transition: background .18s, color .18s }
+  .submenu a:hover{ background: rgba(238,53,36,.07); color:var(--red-deep) }
+  .nav-cta{ display:flex; align-items:center; gap:12px }
+  @media (max-width:1100px){ .menu, .nav-cta .nav-phone{ display:none } }
+
+  .hamburger{ display:none; width:44px; height:44px; border-radius:10px; border:1px solid var(--line); place-items:center }
+  .hamburger svg{ color:var(--navy) }
+  @media (max-width:1100px){ .hamburger{ display:grid } }
+
+  /* mobile drawer */
+  .drawer{ position:fixed; inset:0; z-index:90; background: rgba(20,26,48,.5); opacity:0; visibility:hidden; transition:opacity .25s, visibility .25s }
+  .drawer.open{ opacity:1; visibility:visible }
+  .drawer-panel{ position:absolute; right:0; top:0; bottom:0; width:min(360px,86vw); background:var(--panel); padding:22px; overflow-y:auto; transform:translateX(100%); transition:transform .28s ease; box-shadow: var(--shadow-soft) }
+  .drawer.open .drawer-panel{ transform:translateX(0) }
+  .drawer h4{ font-family:"Fraunces",serif; font-weight:600; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--red); margin:22px 0 6px }
+  .drawer a{ display:block; padding:9px 8px; font-size:15px; color:var(--ink); border-radius:8px } .drawer a:hover{ background: var(--bg-2) }
+  .drawer .close{ position:absolute; top:16px; right:16px; width:40px; height:40px; border-radius:10px; border:1px solid var(--line); display:grid; place-items:center }
+
+  /* ─────── buttons ─────── */
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 20px; border-radius:999px; font-weight:600; font-size:14px; letter-spacing:.01em; transition: transform .2s, background .2s, box-shadow .25s, color .2s; white-space:nowrap }
+  .btn-primary{ background: linear-gradient(180deg, #ff5740, var(--red)); color:#fff; box-shadow: 0 10px 26px -10px rgba(238,53,36,.55), inset 0 -2px 0 rgba(150,25,15,.25) }
+  .btn-primary:hover{ transform:translateY(-1px); box-shadow: 0 16px 36px -10px rgba(238,53,36,.72), inset 0 -2px 0 rgba(150,25,15,.25) }
+  .btn-navy{ background: linear-gradient(180deg, var(--navy-2), var(--navy)); color:#fff; box-shadow: 0 8px 26px -10px rgba(45,54,139,.6), inset 0 -2px 0 rgba(10,16,60,.3) }
+  .btn-navy:hover{ transform:translateY(-1px); box-shadow: 0 14px 36px -10px rgba(45,54,139,.85), inset 0 -2px 0 rgba(10,16,60,.3) }
+  .btn-ghost{ border:1px solid rgba(45,54,139,.28); color:var(--navy); background: rgba(45,54,139,.05) }
+  .btn-ghost:hover{ background: rgba(45,54,139,.12); border-color: rgba(45,54,139,.5) }
+  .btn .arrow{transition:transform .25s} .btn:hover .arrow{transform:translateX(3px)}
+
+  /* ─────── hero ─────── */
+  .hero{ position:relative; padding:104px 0 120px; overflow:hidden }
+  .hero-logo-bg{ position:absolute; top:-30px; right:-40px; width:440px; max-width:48vw; z-index:0; opacity:.10; pointer-events:none; animation: floaty 9s ease-in-out infinite alternate }
+  @keyframes floaty{ from{transform:translateY(0) rotate(-2deg)} to{transform:translateY(18px) rotate(2deg)} }
+  @media (max-width:760px){ .hero-logo-bg{ display:none } }
+  .hero-glow{ position:absolute; left:50%; top:30%; transform:translate(-50%,-50%); width:1200px; height:1100px;
+    background: radial-gradient(50% 50% at 38% 45%, rgba(45,54,139,.26), transparent 62%), radial-gradient(52% 52% at 64% 52%, rgba(238,53,36,.24), transparent 64%);
+    filter: blur(22px); pointer-events:none; animation: drift 10s ease-in-out infinite alternate }
+  @keyframes drift{ from{transform:translate(-52%,-52%) scale(1)} to{transform:translate(-48%,-48%) scale(1.05)} }
+  .eyebrow{ display:inline-flex; align-items:center; gap:10px; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); padding:8px 14px; border-radius:999px; border:1px solid rgba(45,54,139,.3); background: rgba(45,54,139,.07); margin-bottom:32px }
+  .eyebrow .pip{ width:6px; height:6px; border-radius:50%; background:var(--red); box-shadow:0 0 10px var(--red) }
+  h1.display{ font-family:"Fraunces", serif; font-weight:380; font-size: clamp(44px, 7.2vw, 104px); line-height:.98; letter-spacing:-.025em; margin:0 0 26px; max-width:17ch; color:var(--slate); font-variation-settings:"opsz" 144,"SOFT" 30 }
+  h1.display em{ font-family:"Instrument Serif", serif; font-style:italic; font-weight:400; color:var(--red); font-size:1.02em }
+  .hero p.lede{ font-size: clamp(17px,1.4vw,20px); color:var(--ink-2); max-width:58ch; margin:0 0 40px; line-height:1.55 }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:58px }
+  .hero-meta{ display:grid; grid-template-columns: repeat(4,1fr); gap:36px; max-width:940px; padding-top:34px; border-top:1px solid var(--line-2) }
+  .hero-meta .k{ font-family:"Fraunces", serif; font-weight:500; font-size: clamp(28px,3.6vw,44px); letter-spacing:-.02em; color:var(--navy); line-height:1; margin-bottom:8px }
+  .hero-meta .l{ font-size:13px; color:var(--muted) }
+  @media (max-width:720px){ .hero{padding:70px 0 80px} .hero-meta{grid-template-columns: repeat(2,1fr); gap:24px} }
+
+  /* ─────── marquee ─────── */
+  .trust{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--panel); padding:34px 0; overflow:hidden }
+  .trust-label{ text-align:center; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:18px }
+  .marquee{ display:flex; gap:64px; align-items:center; width:max-content; animation: scroll 48s linear infinite; font-family:"Fraunces", serif; font-weight:500; font-size: clamp(18px,1.9vw,26px); color:var(--slate); letter-spacing:-.01em }
+  .marquee span{ display:inline-flex; align-items:center; gap:64px }
+  .marquee span::after{ content:"●"; color:var(--red); font-size:7px; opacity:.7 }
+  .marquee span:nth-child(even)::after{ color:var(--navy) }
+  @keyframes scroll{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .marquee-wrap{ -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent) }
+
+  /* ─────── section base ─────── */
+  section{ position:relative; padding:104px 0 }
+  @media (max-width:720px){ section{padding:70px 0} }
+  .sec-head{ display:flex; align-items:end; justify-content:space-between; gap:32px; margin-bottom:52px; flex-wrap:wrap }
+  .sec-tag{ font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--red); margin-bottom:14px; display:flex; align-items:center; gap:10px }
+  .sec-tag::before{ content:""; width:24px; height:1px; background:var(--red); display:inline-block }
+  h2.h{ font-family:"Fraunces", serif; font-weight:380; font-size: clamp(33px,4.3vw,56px); line-height:1.03; letter-spacing:-.02em; margin:0; max-width:20ch; color:var(--slate) }
+  h2.h em{ font-family:"Instrument Serif", serif; font-style:italic; color:var(--red); font-weight:400 }
+  .sec-sub{ color:var(--ink-2); max-width:48ch; font-size:16px; line-height:1.6 }
+
+  /* placeholders */
+  .placeholder{ border:1.5px dashed rgba(238,53,36,.6); background: rgba(238,53,36,.06); border-radius:12px; padding:14px 16px; color:var(--ink-2); font-size:13.5px; line-height:1.55 }
+  .placeholder b{ color:var(--red-deep); font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:10.5px; display:block; margin-bottom:5px }
+  .ph-text{ color:var(--muted); font-style:italic }
+
+  /* ─────── impact / why ─────── */
+  .why-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:14px }
+  @media (max-width:980px){ .why-grid{grid-template-columns: repeat(2,1fr)} }
+  @media (max-width:560px){ .why-grid{grid-template-columns: 1fr} }
+  .feature{ position:relative; padding:34px 26px 30px; border-radius:var(--radius); background:var(--panel); border:1px solid var(--line); overflow:hidden; box-shadow:0 1px 2px rgba(22,33,70,.04); transition: border-color .35s, transform .35s, box-shadow .35s }
+  .feature::before{ content:""; position:absolute; inset:0; border-radius:inherit; background: radial-gradient(220px 140px at var(--mx,50%) var(--my,0%), rgba(238,53,36,.14), transparent 70%); opacity:0; transition:opacity .4s; pointer-events:none }
+  .feature:hover{ border-color: rgba(238,53,36,.45); transform:translateY(-4px); box-shadow:0 18px 40px -22px rgba(238,53,36,.4) }
+  .feature:hover::before{ opacity:1 }
+  .feature:nth-child(even)::before{ background: radial-gradient(220px 140px at var(--mx,50%) var(--my,0%), rgba(45,54,139,.16), transparent 70%) }
+  .feature:nth-child(even):hover{ border-color: rgba(45,54,139,.5); box-shadow:0 18px 40px -22px rgba(45,54,139,.4) }
+  .feature .num{ font-family:"Instrument Serif", serif; font-style:italic; font-size:22px; color:var(--red); letter-spacing:.04em; margin-bottom:34px }
+  .feature:nth-child(even) .num{ color:var(--navy) }
+  .feature h4{ font-family:"Fraunces", serif; font-weight:450; font-size:21px; line-height:1.15; letter-spacing:-.01em; margin:0 0 12px; color:var(--slate) }
+  .feature p{ color:var(--ink-2); font-size:14.5px; margin:0; line-height:1.6 }
+
+  /* ─────── product showcase ─────── */
+  .product{ background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%) }
+  .product-card{ position:relative; border-radius:28px; padding:78px 60px;
+    background: radial-gradient(900px 400px at 84% 0%, rgba(238,53,36,.10), transparent 60%), radial-gradient(700px 360px at 0% 100%, rgba(45,54,139,.08), transparent 60%), linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+    border:1px solid var(--line); overflow:hidden; box-shadow: var(--shadow-soft) }
+  .product-grid{ display:grid; grid-template-columns: 1.1fr 1fr; gap:64px; align-items:center; position:relative }
+  .product-name{ font-size:13px; letter-spacing:.24em; text-transform:uppercase; color:var(--red); margin-bottom:16px }
+  .product h3{ font-family:"Fraunces", serif; font-weight:380; font-size: clamp(32px,4vw,52px); line-height:1.04; letter-spacing:-.02em; margin:0 0 22px; color:var(--slate) }
+  .product h3 em{ font-family:"Instrument Serif", serif; font-style:italic; color:var(--red); font-weight:400 }
+  .product p{ color:var(--ink-2); margin:0 0 30px; font-size:17px; max-width:50ch }
+  .spec-list{ display:grid; grid-template-columns:1fr 1fr; gap:14px 30px; margin:0; padding:0; list-style:none }
+  .spec-list li{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink-2); padding:11px 0; border-top:1px solid var(--line) }
+  .spec-list li svg{ flex-shrink:0; color:var(--red) }
+  .panel-mock{ position:relative; aspect-ratio:4/5; border-radius:14px; background: linear-gradient(180deg, #20283d 0%, #121626 100%); border:1px solid rgba(255,255,255,.07); overflow:hidden; box-shadow: 0 30px 70px -28px rgba(20,26,48,.5), 0 0 70px -20px rgba(238,53,36,.32); transition: transform .6s cubic-bezier(.2,.7,.2,1) }
+  .panel-mock:hover{ transform: translateY(-6px) }
+  .panel-mock::before{ content:""; position:absolute; inset:18px; border-radius:8px;
+    background: radial-gradient(70% 50% at 50% 50%, rgba(255,200,150,.85), rgba(238,53,36,.55) 45%, rgba(238,53,36,.18) 75%, transparent 100%), linear-gradient(180deg, #ff8a6a, #ee3524);
+    box-shadow: 0 0 80px rgba(238,53,36,.45), inset 0 0 60px rgba(255,255,255,.14); animation: breathe 5s ease-in-out infinite }
+  @keyframes breathe{ 0%,100%{filter:brightness(1)} 50%{filter:brightness(1.08)} }
+  .panel-label{ position:absolute; left:0; right:0; bottom:22px; text-align:center; z-index:2; font-family:"Fraunces", serif; font-style:italic; font-size:18px; color:#fff; font-weight:500; text-shadow:0 1px 6px rgba(0,0,0,.3) }
+  @media (max-width:880px){ .product-card{padding:44px 26px} .product-grid{grid-template-columns:1fr; gap:44px} .spec-list{grid-template-columns:1fr} }
+
+  /* ─────── sectors ─────── */
+  .sectors-grid{ display:grid; grid-template-columns: repeat(6,1fr); gap:12px; grid-auto-rows:178px }
+  .sector{ position:relative; border-radius:var(--radius); background:var(--panel); border:1px solid var(--line); padding:24px; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; box-shadow:0 1px 2px rgba(22,33,70,.04); transition: border-color .3s, box-shadow .3s, transform .3s }
+  .sector:hover{ border-color: rgba(238,53,36,.45); box-shadow:0 16px 36px -24px rgba(238,53,36,.4); transform:translateY(-3px) }
+  .sector .corner{ align-self:flex-end; width:32px; height:32px; border-radius:50%; background: rgba(27,34,54,.05); color:var(--navy); display:grid; place-items:center; transition: background .3s, transform .3s, color .3s }
+  .sector:hover .corner{ background: var(--red); transform:rotate(-45deg) } .sector:hover .corner svg{ color:#fff }
+  .sector h5{ font-family:"Fraunces", serif; font-weight:450; font-size:22px; margin:0; letter-spacing:-.01em; color:var(--slate) }
+  .sector small{ font-size:12px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase }
+  .sector.lg{ grid-column: span 3; grid-row: span 2 } .sector.md{ grid-column: span 2 } .sector.sm{ grid-column: span 1 }
+  .sector.featured{ background: radial-gradient(420px 220px at 82% 0%, rgba(238,53,36,.16), transparent 70%), radial-gradient(360px 200px at 0% 100%, rgba(45,54,139,.12), transparent 70%), linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%); border-color: rgba(238,53,36,.3) }
+  .sector.featured h5{ font-size:30px }
+  .sector p.copy{ color:var(--ink-2); font-size:14.5px; max-width:40ch; line-height:1.5; margin:0 }
+  @media (max-width:980px){ .sectors-grid{grid-template-columns: repeat(2,1fr); grid-auto-rows:158px} .sector.lg,.sector.md,.sector.sm{grid-column:span 1; grid-row:span 1} .sector.lg{grid-column:span 2} }
+
+  /* ─────── product cards (catalog) ─────── */
+  .cat-tabs{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:34px }
+  .cat-tab{ padding:9px 16px; border-radius:999px; border:1px solid var(--line); background:var(--panel); font-size:13.5px; color:var(--ink-2); font-weight:500; transition: all .2s }
+  .cat-tab.active, .cat-tab:hover{ background: var(--navy); color:#fff; border-color:var(--navy) }
+  .pgrid{ display:grid; grid-template-columns: repeat(4,1fr); gap:16px }
+  @media (max-width:960px){ .pgrid{grid-template-columns: repeat(3,1fr)} }
+  @media (max-width:680px){ .pgrid{grid-template-columns: repeat(2,1fr)} }
+  .pcard{ border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); overflow:hidden; box-shadow:0 1px 2px rgba(22,33,70,.04); transition: transform .3s, box-shadow .3s, border-color .3s }
+  .pcard:hover{ transform:translateY(-4px); box-shadow: var(--shadow-soft); border-color: rgba(238,53,36,.4) }
+  .pcard-img{ position:relative; aspect-ratio:1/1; background: linear-gradient(150deg, #eef1f8, #e3e8f3); display:grid; place-items:center; text-align:center; color: rgba(45,54,139,.45); overflow:hidden }
+  .pcard-img .ic{ display:flex; flex-direction:column; align-items:center; gap:8px; padding:14px }
+  .pcard-img .fn{ font-size:10.5px; color: rgba(45,54,139,.6); font-family: ui-monospace, monospace; letter-spacing:-.02em; word-break:break-all; max-width:90% }
+  .pcard-img .best{ position:absolute; top:10px; left:10px; background: var(--red); color:#fff; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:4px 9px; border-radius:999px }
+  .pcard-body{ padding:16px 18px 18px }
+  .pcard-body h4{ font-family:"Fraunces", serif; font-weight:500; font-size:16.5px; margin:0 0 8px; letter-spacing:-.01em; color:var(--slate); line-height:1.2 }
+  .pcard-body a{ font-size:13px; color:var(--red); font-weight:600; display:inline-flex; align-items:center; gap:5px }
+  .pcard-body a .arrow{ transition: transform .2s } .pcard:hover .pcard-body a .arrow{ transform:translateX(3px) }
+
+  /* ─────── two-col content (about/structure/replicas/expo) ─────── */
+  .split{ display:grid; grid-template-columns: 1fr 1fr; gap:60px; align-items:center }
+  @media (max-width:880px){ .split{grid-template-columns:1fr; gap:40px} }
+  .copy-block p{ color:var(--ink-2); font-size:16.5px; line-height:1.7; margin:0 0 18px; max-width:56ch }
+  .copy-block p strong{ color:var(--slate); font-weight:600 }
+  .copy-block ul{ margin:18px 0 0; padding:0; list-style:none; display:grid; gap:12px }
+  .copy-block ul li{ display:flex; gap:12px; align-items:flex-start; font-size:15px; color:var(--ink-2) }
+  .copy-block ul li svg{ flex-shrink:0; color:var(--red); margin-top:3px }
+  .visual-card{ position:relative; border-radius:24px; padding:46px; min-height:340px;
+    background: radial-gradient(420px 260px at 80% 10%, rgba(238,53,36,.13), transparent 65%), radial-gradient(360px 240px at 0% 100%, rgba(45,54,139,.12), transparent 65%), linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 100%);
+    border:1px solid var(--line); box-shadow: var(--shadow-soft); display:flex; flex-direction:column; justify-content:center; gap:16px }
+  .visual-card .big-num{ font-family:"Fraunces", serif; font-weight:380; font-size: clamp(54px,8vw,92px); line-height:.9; letter-spacing:-.03em; color:var(--navy) }
+  .visual-card .big-num em{ font-family:"Instrument Serif", serif; font-style:italic; color:var(--red) }
+  .visual-card .cap{ font-size:15px; color:var(--ink-2); max-width:34ch; line-height:1.5 }
+
+  /* ─────── image grid (studio/gallery) ─────── */
+  .imgrid{ display:grid; grid-template-columns: repeat(3,1fr); gap:12px }
+  @media (max-width:760px){ .imgrid{grid-template-columns: repeat(2,1fr)} }
+  .imgrid.four{ grid-template-columns: repeat(4,1fr) }
+  @media (max-width:880px){ .imgrid.four{grid-template-columns: repeat(2,1fr)} }
+  .itile{ position:relative; aspect-ratio:4/3; border-radius:var(--radius); overflow:hidden; background: linear-gradient(150deg, #eef1f8, #e3e8f3); border:1px solid var(--line); display:grid; place-items:center; text-align:center; color: rgba(45,54,139,.4); padding:16px }
+  .itile.sq{ aspect-ratio:1/1 } .itile.tall{ aspect-ratio:3/4 } .itile.big{ grid-column: span 2; grid-row: span 2; aspect-ratio:auto }
+  .itile span{ font-size:11.5px; color: rgba(45,54,139,.55); margin-top:8px; line-height:1.3 }
+
+  /* ─────── stats ─────── */
+  .stats{ background: var(--bg-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:78px 0 }
+  .stats-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:48px; text-align:center }
+  .stat .num{ font-family:"Fraunces", serif; font-weight:380; font-size: clamp(42px,5.4vw,74px); line-height:1; letter-spacing:-.03em; background: linear-gradient(180deg, #ff6a52, var(--red-deep)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:14px }
+  .stat:nth-child(even) .num{ background: linear-gradient(180deg, var(--navy-2), var(--navy)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent }
+  .stat .lbl{ font-size:13px; color:var(--ink-2); max-width:26ch; margin:0 auto }
+  @media (max-width:780px){ .stats-grid{grid-template-columns: repeat(2,1fr); gap:46px 24px} }
+
+  /* ─────── testimonials ─────── */
+  .tgrid{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px }
+  @media (max-width:900px){ .tgrid{grid-template-columns: repeat(2,1fr)} }
+  @media (max-width:600px){ .tgrid{grid-template-columns: 1fr} }
+  .tcard{ border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); padding:26px 26px 24px; box-shadow:0 1px 2px rgba(22,33,70,.04); transition: transform .3s, box-shadow .3s }
+  .tcard:hover{ transform:translateY(-3px); box-shadow: var(--shadow-soft) }
+  .tcard .stars{ color:var(--red); font-size:14px; letter-spacing:2px; margin-bottom:14px }
+  .tcard p{ font-size:15px; color:var(--ink-2); line-height:1.6; margin:0 0 18px }
+  .tcard .who{ display:flex; align-items:center; gap:12px }
+  .tcard .av{ width:40px; height:40px; border-radius:50%; background: linear-gradient(135deg, var(--navy-2), var(--navy)); color:#fff; display:grid; place-items:center; font-family:"Fraunces", serif; font-weight:600; font-size:16px }
+  .tcard .nm{ font-size:14px; font-weight:600; color:var(--slate) } .tcard .co{ font-size:12.5px; color:var(--muted) }
+
+  /* ─────── companies list ─────── */
+  .co-list{ display:flex; flex-wrap:wrap; gap:10px }
+  .co-chip{ padding:10px 16px; border-radius:999px; background:var(--panel); border:1px solid var(--line); font-size:14px; color:var(--slate); font-weight:500; box-shadow:0 1px 2px rgba(22,33,70,.04); transition: all .2s }
+  .co-chip:hover{ border-color: rgba(45,54,139,.45); transform:translateY(-2px) }
+
+  /* ─────── awards ─────── */
+  .award-card{ display:grid; grid-template-columns: auto 1fr; gap:34px; align-items:start; border:1px solid var(--line); border-radius:24px; background:var(--panel); padding:44px; box-shadow: var(--shadow-soft) }
+  @media (max-width:680px){ .award-card{grid-template-columns:1fr; gap:24px; padding:30px} }
+  .award-medal{ width:96px; height:96px; border-radius:50%; background: radial-gradient(circle at 35% 30%, #fff, rgba(238,53,36,.15)); border:2px solid rgba(238,53,36,.3); display:grid; place-items:center; color:var(--red) }
+  .award-card h3{ font-family:"Fraunces", serif; font-weight:450; font-size:26px; margin:0 0 6px; color:var(--slate); letter-spacing:-.01em }
+  .award-card .sub{ font-size:14px; color:var(--red); font-weight:600; margin-bottom:16px }
+  .award-card p{ color:var(--ink-2); font-size:15px; line-height:1.65; margin:0 0 14px }
+  .award-card .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px }
+  .award-card .tags span{ font-size:12.5px; padding:6px 12px; border-radius:999px; background: rgba(45,54,139,.07); color:var(--navy) }
+
+  /* ─────── news ─────── */
+  .news-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:16px }
+  @media (max-width:980px){ .news-grid{grid-template-columns: repeat(2,1fr)} }
+  @media (max-width:560px){ .news-grid{grid-template-columns: 1fr} }
+  .post{ border:1px solid var(--line); border-radius:var(--radius); background:var(--panel); overflow:hidden; box-shadow:0 1px 2px rgba(22,33,70,.04); transition: transform .3s, box-shadow .3s, border-color .3s }
+  .post:hover{ transform:translateY(-4px); box-shadow: var(--shadow-soft); border-color: var(--line-2) }
+  .post .thumb{ aspect-ratio:16/10; background: linear-gradient(150deg, #eaeef7, #dde4f2); display:grid; place-items:center; color: rgba(45,54,139,.4) }
+  .post .body{ padding:20px 22px 24px }
+  .post .date{ font-size:12px; color:var(--red); letter-spacing:.06em; text-transform:uppercase; margin-bottom:10px; font-weight:600 }
+  .post h4{ font-family:"Fraunces", serif; font-weight:450; font-size:20px; line-height:1.2; letter-spacing:-.01em; margin:0 0 10px; color:var(--slate) }
+  .post p{ font-size:13.5px; color:var(--ink-2); margin:0; line-height:1.6 }
+
+  /* ─────── terms accordion ─────── */
+  .terms-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap:14px }
+  @media (max-width:760px){ .terms-grid{grid-template-columns:1fr} }
+  .term{ border:1px solid var(--line); border-radius:14px; background:var(--panel); padding:22px 24px }
+  .term h4{ font-family:"Fraunces", serif; font-weight:500; font-size:17px; margin:0 0 8px; color:var(--slate); display:flex; align-items:center; gap:10px }
+  .term h4 .d{ width:8px; height:8px; border-radius:50%; background:var(--red); flex-shrink:0 }
+  .term p{ font-size:14px; color:var(--ink-2); margin:0; line-height:1.6 }
+
+  /* ─────── CTA ─────── */
+  .cta{ position:relative; padding:96px 0 110px; text-align:center; overflow:hidden }
+  .cta::before{ content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:1000px; height:640px;
+    background: radial-gradient(closest-side at 38% 50%, rgba(45,54,139,.24), transparent 70%), radial-gradient(closest-side at 62% 50%, rgba(238,53,36,.22), transparent 70%); filter: blur(22px); pointer-events:none }
+  .cta h2{ font-family:"Fraunces", serif; font-weight:380; font-size: clamp(36px,5.4vw,78px); line-height:.98; letter-spacing:-.025em; margin:0 auto 20px; max-width:18ch; position:relative; color:var(--slate) }
+  .cta h2 em{ font-family:"Instrument Serif", serif; font-style:italic; color:var(--red); font-weight:400 }
+  .cta p{ color:var(--ink-2); max-width:54ch; margin:0 auto 36px; font-size:17px; position:relative }
+  .cta-actions{ display:inline-flex; gap:14px; flex-wrap:wrap; justify-content:center; position:relative }
+
+  /* ─────── contact ─────── */
+  .contact{ background: var(--bg-2); border-top:1px solid var(--line) }
+  .contact-grid{ display:grid; grid-template-columns: 1.2fr 1fr; gap:60px; align-items:start }
+  @media (max-width:880px){ .contact-grid{grid-template-columns:1fr; gap:46px} }
+  form{ display:grid; gap:16px }
+  .field{ display:flex; flex-direction:column; gap:6px }
+  .field label{ font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted) }
+  .field input, .field textarea{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-sm); padding:14px 16px; color:var(--ink); font:inherit; font-size:15px; transition: border-color .25s, background .25s }
+  .field textarea{ min-height:130px; resize:vertical }
+  .field input:focus, .field textarea:focus{ outline:none; border-color: rgba(238,53,36,.5); background: rgba(238,53,36,.03); box-shadow: 0 0 0 4px rgba(238,53,36,.08) }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:16px } @media (max-width:520px){ .row2{grid-template-columns:1fr} }
+  .contact-info{ border:1px solid var(--line); border-radius:var(--radius); padding:30px; background:var(--panel); box-shadow: var(--shadow-soft) }
+  .contact-info h4{ font-family:"Fraunces", serif; font-weight:450; font-size:23px; margin:0 0 6px; color:var(--slate) }
+  .contact-info .role{ color:var(--muted); font-size:13px; margin-bottom:22px }
+  .contact-info .line{ display:flex; align-items:flex-start; gap:14px; padding:14px 0; border-top:1px solid var(--line); font-size:14px; color:var(--ink-2) }
+  .contact-info .line:first-of-type{ border-top:0 }
+  .contact-info .line svg{ color:var(--red); flex-shrink:0; margin-top:2px }
+  .contact-info .line strong{ color:var(--slate); font-weight:600 }
+  .contact-info .line a:hover{ color:var(--red) }
+  .socials{ display:flex; gap:10px; margin-top:22px }
+  .socials a{ width:40px; height:40px; border-radius:10px; border:1px solid var(--line); display:grid; place-items:center; color:var(--ink-2); transition: all .25s }
+  .socials a:hover{ border-color: rgba(45,54,139,.5); color:var(--navy); transform:translateY(-2px); background: rgba(45,54,139,.05) }
+
+  /* ─────── footer ─────── */
+  footer{ background:#161c2e; color:#aeb6c9; padding:64px 0 36px }
+  .foot-top{ display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap:36px; padding-bottom:40px; margin-bottom:28px; border-bottom:1px solid rgba(255,255,255,.08) }
+  @media (max-width:880px){ .foot-top{grid-template-columns: 1fr 1fr} }
+  @media (max-width:520px){ .foot-top{grid-template-columns: 1fr} }
+  footer .brand .word{ color:#fff } footer .brand .word .it{ color: var(--red-soft) }
+  .foot-tag{ font-family:"Instrument Serif", serif; font-style:italic; font-size:18px; color:#c7cee0; margin:16px 0 0; max-width:30ch }
+  .foot-col h5{ font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#fff; margin:0 0 14px }
+  .foot-col a{ display:block; font-size:13.5px; color:#aeb6c9; padding:5px 0; transition:color .2s } .foot-col a:hover{ color:#fff }
+  .foot-bottom{ display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; font-size:12.5px; color:#7f8aa3 }
+
+  .reveal{ opacity:0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease } .reveal.in{ opacity:1; transform:none }
+  :focus-visible{ outline: 2px solid var(--red); outline-offset:3px; border-radius:6px }
+  @media (prefers-reduced-motion: reduce){ *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important } .marquee{animation:none} }
+</style>
+</head>
+<body>
+
+<!-- ─────── TOP UTILITY BAR ─────── -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="tb-left">
+      <a href="tel:1300361970"><span class="lbl">Call</span> 1300 361 970</a>
+      <a href="tel:0423226215">0423 226 215</a>
+      <a class="em" href="mailto:armando@signrise.com"><span class="lbl">Email</span> armando@signrise.com</a>
+    </div>
+    <div class="tb-social">
+      <span class="lbl" style="opacity:.7">A proud SignRISE Licensee</span>
+      <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.8-2.05 3.7-2.05 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9s-2.04 1.38-2.04 2.8V21h-4z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5a2.5 2.5 0 0 0-1.8 1.8C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ─────── NAV ─────── -->
+<header class="nav">
+  <div class="wrap nav-row">
+    <a href="#home" class="brand" aria-label="Branditrite home">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="43" height="43" rx="11" fill="#fff" stroke="#2d368b" stroke-width="2.5"/>
+        <path d="M13 24.5l6.4 6.6L35 16" stroke="#ee3524" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="word">Brand<span class="it">it</span>rite</span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li>
+          <button aria-haspopup="true">About <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="submenu">
+            <a href="#about">About Us</a>
+            <a href="#structure">Our Business Structure</a>
+            <a href="#studio">Studio &amp; Factory</a>
+            <a href="#awards">Awards</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#companies">Companies Using Our Products</a>
+            <a href="#terms">Terms &amp; Conditions</a>
+          </div>
+        </li>
+        <li>
+          <button aria-haspopup="true">Products <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="submenu">
+            <a href="#products">Your Products (Shop)</a>
+            <a href="#bestsellers">15 Best Selling Products</a>
+            <a href="#replicas">Replicas &amp; Displays</a>
+            <a href="#expos">EXPO's &amp; Events</a>
+          </div>
+        </li>
+        <li>
+          <button aria-haspopup="true">Catalogues <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="submenu">
+            <a href="#catalogues">Catalogues</a>
+            <a href="#catalogues">Brochure</a>
+          </div>
+        </li>
+        <li>
+          <button aria-haspopup="true">Gallery <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="submenu">
+            <a href="#gallery">Image Gallery</a>
+            <a href="#gallery">Video Gallery</a>
+          </div>
+        </li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-cta">
+      <span class="nav-phone" style="font-size:14px; color:var(--navy); font-weight:600">1300 361 970</span>
+      <a href="#contact" class="btn btn-primary">Get a quote
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="hamburger" id="hbtn" aria-label="Open menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- ─────── MOBILE DRAWER ─────── -->
+<div class="drawer" id="drawer">
+  <div class="drawer-panel">
+    <button class="close" id="dclose" aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <a href="#home" style="font-weight:600; font-size:17px; color:var(--navy)">Home</a>
+    <h4>About</h4>
+    <a href="#about">About Us</a><a href="#structure">Our Business Structure</a><a href="#studio">Studio &amp; Factory</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#companies">Companies Using Our Products</a><a href="#terms">Terms &amp; Conditions</a>
+    <h4>Products</h4>
+    <a href="#products">Your Products (Shop)</a><a href="#bestsellers">15 Best Selling Products</a><a href="#replicas">Replicas &amp; Displays</a><a href="#expos">EXPO's &amp; Events</a>
+    <h4>Catalogues &amp; Gallery</h4>
+    <a href="#catalogues">Catalogues &amp; Brochure</a><a href="#gallery">Image &amp; Video Gallery</a>
+    <h4>More</h4>
+    <a href="#news">News</a><a href="#contact">Contact Us</a>
+  </div>
+</div>
+
+<!-- ─────── HERO ─────── -->
+<section class="hero" id="home">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <svg class="hero-logo-bg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="2.5" y="2.5" width="43" height="43" rx="11" fill="none" stroke="#2d368b" stroke-width="2.5"/>
+    <path d="M13 24.5l6.4 6.6L35 16" stroke="#ee3524" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow reveal"><span class="pip"></span> A licensed SignRISE reseller · Australia</div>
+    <h1 class="display reveal">The world's smartest <em>signs</em> &amp; displays.</h1>
+    <p class="lede reveal">Tired of outdated methods that fail to deliver? Branditrite brings the patented Wonda range to Australian business — 72+ smart signs, displays and product replicas that attract more foot traffic, more leads and more sales.</p>
+    <div class="hero-ctas reveal">
+      <a href="#products" class="btn btn-primary">Explore the range
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="tel:1300361970" class="btn btn-navy">Call 1300 361 970</a>
+    </div>
+    <div class="hero-meta reveal">
+      <div><div class="k">72+</div><div class="l">products in the range</div></div>
+      <div><div class="k">31</div><div class="l">available in the shop</div></div>
+      <div><div class="k">20%+</div><div class="l">of the world's top 500 brands</div></div>
+      <div><div class="k">3</div><div class="l">sectors served</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── TRUST MARQUEE ─────── -->
+<section class="trust" style="padding:44px 0">
+  <div class="wrap"><div class="trust-label">More than 20% of the world's top 500 brands use SignRISE products</div></div>
+  <div class="marquee-wrap">
+    <div class="marquee" id="marquee" aria-label="Brand names"></div>
+  </div>
+</section>
+
+<!-- ─────── WHY / IMPACT ─────── -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Why it works</div>
+      <h2 class="h">Small lifts in sales, <em>outsized</em> lifts in profit.</h2></div>
+      <p class="sec-sub">Imagine your business skyrocketing. We empower companies to attract more foot traffic and leads in the ever-evolving marketplace.</p>
+    </div>
+    <div class="why-grid">
+      <article class="feature reveal" data-glow><div class="num">01</div><h4>21–35% more profit</h4><p>Just a 3% to 5% increase in sales should lead to an astonishing 21% to 35% rise in profits. Smart displays are one of the most cost-effective ways to get there.</p></article>
+      <article class="feature reveal" data-glow><div class="num">02</div><h4>Attract foot traffic &amp; leads</h4><p>Bright, backlit signs and replicas pull customers in and generate leads in an ever-evolving, competitive marketplace.</p></article>
+      <article class="feature reveal" data-glow><div class="num">03</div><h4>Data-driven &amp; well designed</h4><p>Advanced, data-driven insights paired with intuitive design — a modern alternative to outdated methods that helps you spot trends and stay competitive.</p></article>
+      <article class="feature reveal" data-glow><div class="num">04</div><h4>Startup to enterprise</h4><p>Solutions scale and integrate seamlessly whether you're a small startup or a global enterprise.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── PRODUCT SHOWCASE ─────── -->
+<section class="product">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">The Wonda range</div>
+      <h2 class="h">Lightweight, collapsible, <em>backlit</em> displays that fold flat and ship light.</h2></div>
+      <p class="sec-sub">The patented Wonda system pairs an expanding frame with a printed fabric face — compact enough to fly as checked luggage and set up in minutes, no tools needed.</p>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-grid">
+        <div>
+          <div class="product-name">Smart signs &amp; displays</div>
+          <h3>Travel light, set up fast, <em>shine bright.</em></h3>
+          <p>Featuring eye-catching backlit signage, your stand instantly attracts attention. Double-sided displays offer two messages in one — and you can re-skin and rebrand with ease.</p>
+          <ul class="spec-list">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Patented expanding frame</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Printed fabric face</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Sets up in ~5 minutes, no tools</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Backlit illumination</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Double-sided &amp; re-skinnable</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Flies as checked luggage</li>
+          </ul>
+        </div>
+        <div class="panel-mock" aria-hidden="true"><div class="panel-label">Wonda backlit display</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── SECTORS ─────── -->
+<section id="sectors">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Three sectors</div>
+      <h2 class="h">Over 72 products across <em>three</em> sectors.</h2></div>
+      <p class="sec-sub">Retail &amp; Professionals, Corporate, and Expos &amp; Events — plus dedicated ranges for restaurants, shopping centres, replicas and pop-up shops.</p>
+    </div>
+    <div class="sectors-grid reveal">
+      <div class="sector lg featured"><small>Sector 01</small><div><h5>Retail &amp; Professionals</h5><p class="copy">In-store displays, street signs and menu pieces that turn passers-by into customers — for retailers, restaurants and professional services.</p></div></div>
+      <div class="sector md"><small>Sector 02</small><h5>Corporate</h5><div class="corner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+      <div class="sector md"><small>Sector 03</small><h5>Expos &amp; Events</h5><div class="corner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+      <div class="sector sm"><small>Range</small><h5>Replicas</h5><div class="corner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+      <div class="sector md"><small>Range</small><h5>Shopping Centres</h5><div class="corner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+      <div class="sector sm"><small>Range</small><h5>Pop-up Shops</h5><div class="corner"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── YOUR PRODUCTS / SHOP ─────── -->
+<section id="products" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Your products · Shop</div>
+      <h2 class="h">The full Wonda <em>catalogue.</em></h2></div>
+      <p class="sec-sub">All 31 products from our online shop. Each card has an image placeholder ready for the real product photo. Browse, then request a quote or order through the shop.</p>
+    </div>
+    <div class="cat-tabs reveal" id="catTabs"></div>
+    <div class="pgrid reveal" id="productGrid"></div>
+    <div class="placeholder reveal" style="margin-top:26px; max-width:680px">
+      <b>Drop in real product photos &amp; wire up the shop</b>
+      Each placeholder shows the original image filename from your WooCommerce shop (e.g. <code>Wonda-Street-Sign.webp</code>). Replace each with the real product image, and link “View product” to its live shop page and customer login.
+    </div>
+  </div>
+</section>
+
+<!-- ─────── BEST SELLERS ─────── -->
+<section id="bestsellers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">15 best selling products</div>
+      <h2 class="h">Our <em>best sellers.</em></h2></div>
+      <p class="sec-sub">The most popular pieces in the range — table displays, pull-ups, street signs, triangles and replicas.</p>
+    </div>
+    <div class="pgrid reveal" id="bestGrid"></div>
+    <div class="placeholder reveal" style="margin-top:22px">
+      <b>Note</b>
+      Your shop’s “15 Best Selling Products” category lists 15 items (12 shown here from the live category page). Confirm the final 3 and add them.
+    </div>
+  </div>
+</section>
+
+<!-- ─────── REPLICAS & DISPLAYS ─────── -->
+<section id="replicas" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Replicas &amp; Displays</div>
+      <h2 class="h">There's nothing better than a giant replica to <em>sell the product.</em></h2></div>
+      <p class="sec-sub">Hyper-realistic product replicas from 600mm to 2.5m with full 360° visuals and stunning backlighting.</p>
+    </div>
+    <div class="split">
+      <div class="copy-block reveal">
+        <p>“There's nothing better than a large Coca-Cola can replica to sell Coca-Cola.” We create <strong>hyper-realistic product replicas</strong> — from 600mm right up to 2.5m — with complete 360° visuals and stunning backlit effects.</p>
+        <p>Our <strong>Wonda Table</strong> displays are a favourite:</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> 5kg bag &amp; up — assembles in a minute</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Internal shelf</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Stands moderate winds</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Backlit</li>
+        </ul>
+        <p style="margin-top:18px; font-size:14.5px; color:var(--muted)">Replicas produced for brands including Coca-Cola, Red Bull, Shelby, Guaraná, Samsung and Soudal.</p>
+      </div>
+      <div class="imgrid reveal">
+        <div class="itile big"><div><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Replica feature photo</span></div></div>
+        <div class="itile"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Can replica</span></div></div>
+        <div class="itile"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Cup replica</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── EXPOS & EVENTS ─────── -->
+<section id="expos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">EXPO's &amp; Events</div>
+      <h2 class="h">Stand out at <em>every</em> expo &amp; event.</h2></div>
+      <p class="sec-sub">Travel light, set up fast, shine bright — the smarter way to showcase your brand on the global stage.</p>
+    </div>
+    <div class="split">
+      <div class="imgrid reveal" style="order:2">
+        <div class="itile big"><div><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>3m × 3m stand</span></div></div>
+        <div class="itile"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Backlit table</span></div></div>
+        <div class="itile"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Self-erecting banner</span></div></div>
+      </div>
+      <div class="copy-block reveal" style="order:1">
+        <p>Our Expos &amp; Events range is <strong>compact enough to fly as checked luggage</strong> and sets up in minutes — no tools needed. Featuring eye-catching backlit signage, your stand will instantly attract attention and leave a lasting impression.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Backlit vs. standard banner — no comparison</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Self-erecting banner — up in 5 minutes</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> 3m × 3m stands &amp; backlit tables</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Double-sided — two messages in one</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Re-skin &amp; rebrand with ease</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── STATS ─────── -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat reveal"><div class="num">72+</div><div class="lbl">products in the Wonda range</div></div>
+      <div class="stat reveal"><div class="num">21–35%</div><div class="lbl">profit rise from a 3–5% sales increase</div></div>
+      <div class="stat reveal"><div class="num">3</div><div class="lbl">sectors: retail, corporate, events</div></div>
+      <div class="stat reveal"><div class="num">20%+</div><div class="lbl">of the world's top 500 brands use smart displays</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── ABOUT ─────── -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">About us</div>
+      <h2 class="h">A proud Australian <em>SignRISE</em> reseller.</h2></div>
+      <p class="sec-sub">Introducing our groundbreaking solution — the ultimate game-changer for businesses tired of outdated methods.</p>
+    </div>
+    <div class="split">
+      <div class="copy-block reveal">
+        <p>Branditrite is a proud Australian <strong>SignRISE reseller</strong>, specialising in smart signs and display solutions. We offer over <strong>72 products</strong> across three sectors — Retail &amp; Professionals, Corporate, and Expos &amp; Events — including displays, replicas and complete event solutions.</p>
+        <p>Join prestigious brands like <strong>Toyota, IBM, Tempus Wine, Coca-Cola, Dell Computers and Westpac</strong>. Over 20% of the world's top 500 brands have experienced the transformative power of our branding solutions.</p>
+        <p>With advanced, data-driven insights and intuitive design, Branditrite is a modern alternative to outdated methods — helping you spot trends and stay competitive. Whether you're a small startup or a global enterprise, our solutions integrate seamlessly into your business.</p>
+      </div>
+      <div class="visual-card reveal">
+        <div class="big-num">72<em>+</em></div>
+        <div class="cap">products across Retail &amp; Professionals, Corporate, and Expos &amp; Events.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── BUSINESS STRUCTURE ─────── -->
+<section id="structure" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Our business structure</div>
+      <h2 class="h">Built to deliver, <em>start to finish.</em></h2></div>
+      <p class="sec-sub">From design and manufacture through to local supply, Branditrite operates as a licensed SignRISE reseller within a global network.</p>
+    </div>
+    <div class="imgrid reveal">
+      <div class="itile" style="aspect-ratio:auto; min-height:200px; align-content:center"><div><div style="font-family:'Fraunces',serif; font-size:30px; color:var(--navy); font-weight:500">SignRISE</div><span>The patent holder &amp; licensor</span></div></div>
+      <div class="itile" style="aspect-ratio:auto; min-height:200px; align-content:center"><div><div style="font-family:'Fraunces',serif; font-size:30px; color:var(--red); font-weight:500">Branditrite</div><span>Your licensed Australian reseller</span></div></div>
+      <div class="itile" style="aspect-ratio:auto; min-height:200px; align-content:center"><div><div style="font-family:'Fraunces',serif; font-size:30px; color:var(--slate); font-weight:500">You</div><span>Retail, corporate &amp; event clients</span></div></div>
+    </div>
+    <div class="placeholder reveal" style="margin-top:22px">
+      <b>Add your real structure diagram / copy</b>
+      Replace the three tiles with the actual “Our Business Structure” content and diagram from your site (licensor → reseller → client, plus any partner/manufacturing detail).
+    </div>
+  </div>
+</section>
+
+<!-- ─────── STUDIO & FACTORY ─────── -->
+<section id="studio">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Studio &amp; Factory</div>
+      <h2 class="h">Where it's <em>designed</em> &amp; made.</h2></div>
+      <p class="sec-sub">We empower companies to attract more foot traffic and leads — backed by an in-house art studio and full production facility.</p>
+    </div>
+    <h3 style="font-family:'Fraunces',serif; font-weight:500; color:var(--slate); font-size:24px; margin:0 0 18px">Art Studio</h3>
+    <div class="imgrid reveal" style="margin-bottom:36px">
+      <div class="itile"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Art studio photo 1</span></div></div>
+      <div class="itile"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Art studio photo 2</span></div></div>
+      <div class="itile"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Art studio photo 3</span></div></div>
+    </div>
+    <h3 style="font-family:'Fraunces',serif; font-weight:500; color:var(--slate); font-size:24px; margin:0 0 18px">Production</h3>
+    <div class="imgrid four reveal">
+      <div class="itile sq"><div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Production 1</span></div></div>
+      <div class="itile sq"><div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Production 2</span></div></div>
+      <div class="itile sq"><div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Production 3</span></div></div>
+      <div class="itile sq"><div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Production 4</span></div></div>
+      <div class="itile sq"><div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Production 5</span></div></div>
+      <div class="itile sq"><div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Production 6</span></div></div>
+    </div>
+    <div class="placeholder reveal" style="margin-top:22px">
+      <b>Add your real studio &amp; factory photos</b>
+      The original page shows 3 art-studio images and 6 production images — drop those real photos into these tiles.
+    </div>
+  </div>
+</section>
+
+<!-- ─────── AWARDS ─────── -->
+<section id="awards" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Awards</div>
+      <h2 class="h">Recognised for <em>engineering</em> excellence.</h2></div>
+    </div>
+    <div class="award-card reveal">
+      <div class="award-medal"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg></div>
+      <div>
+        <h3>Sydney Engineering Excellence Awards (EEA) 2013</h3>
+        <div class="sub">Highly Commended · Small Business Venture · September 2013</div>
+        <p>SignRISE received a “Highly Commended” recognition in the Small Business Venture category, which honours engineering excellence in organisations with fewer than 100 employees and less than $20 million turnover. The award recognised three product lines: the <strong>WondaSIGN 360° Events &amp; Promotions</strong> range, the <strong>Expo Modular</strong> range, and <strong>Pop Up Car Roof Media</strong>.</p>
+        <p>Judges praised the designs for “strength of design, enabling excellence in promotion yet simplicity of use” — alongside product quality, ease of installation, multi-purpose functionality, stability, durability, backlighting, lightweight materials and usage flexibility.</p>
+        <p style="font-style:italic; color:var(--slate)">“There can be no greater accolade for achievement than the recognition of peers' success as judged by fellow peers.” — John Nichols, EEA President</p>
+        <div class="tags"><span>Strength of design</span><span>Simplicity of use</span><span>Backlighting</span><span>Lightweight</span><span>Durability</span><span>Stability</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── TESTIMONIALS ─────── -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Testimonials</div>
+      <h2 class="h">What our customers <em>say.</em></h2></div>
+      <p class="sec-sub">Real words from businesses using SignRISE displays at expos, showrooms and storefronts.</p>
+    </div>
+    <div class="tgrid reveal" id="testGrid"></div>
+  </div>
+</section>
+
+<!-- ─────── COMPANIES ─────── -->
+<section id="companies" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Companies using our products</div>
+      <h2 class="h">More than 20% of the world's <em>top 500 brands.</em></h2></div>
+      <p class="sec-sub">A selection of the companies that have used SignRISE products and displays.</p>
+    </div>
+    <div class="co-list reveal" id="coList"></div>
+    <div class="placeholder reveal" style="margin-top:24px; max-width:680px">
+      <b>Swap names for real logos where you have rights</b>
+      These are reproduced from your “Companies Using Our Products” page as text. For a logo wall, add each brand's logo image (mono/greyscale) where you have permission to display it.
+    </div>
+  </div>
+</section>
+
+<!-- ─────── GALLERY ─────── -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Gallery</div>
+      <h2 class="h">See the range <em>in the wild.</em></h2></div>
+      <p class="sec-sub">Image and video galleries of real installs across retail floors, expos and events.</p>
+    </div>
+    <div class="imgrid four reveal">
+      <div class="itile sq"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Image gallery</span></div></div>
+      <div class="itile sq"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Image gallery</span></div></div>
+      <div class="itile sq"><div><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z" fill="currentColor"/></svg><span>Video gallery</span></div></div>
+      <div class="itile sq"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Image gallery</span></div></div>
+      <div class="itile sq"><div><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z" fill="currentColor"/></svg><span>Video gallery</span></div></div>
+      <div class="itile sq"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Image gallery</span></div></div>
+      <div class="itile sq"><div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg><span>Image gallery</span></div></div>
+      <div class="itile sq"><div><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z" fill="currentColor"/></svg><span>Video gallery</span></div></div>
+    </div>
+    <div class="placeholder reveal" style="margin-top:20px">
+      <b>Connect your Image &amp; Video galleries</b>
+      Replace with the real photos and embedded videos from your Image Gallery and Video Gallery pages.
+    </div>
+  </div>
+</section>
+
+<!-- ─────── NEWS ─────── -->
+<section id="news" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">News</div>
+      <h2 class="h">Latest from <em>Branditrite.</em></h2></div>
+      <p class="sec-sub">Product launches, installs and reseller news.</p>
+    </div>
+    <div class="news-grid reveal" id="newsGrid"></div>
+  </div>
+</section>
+
+<!-- ─────── CATALOGUES ─────── -->
+<section id="catalogues">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Catalogues &amp; Brochure</div>
+      <h2 class="h">Take the <em>whole range</em> with you.</h2></div>
+      <p class="sec-sub">Download the full product catalogues and brochure, or request a printed copy.</p>
+    </div>
+    <div class="hero-ctas reveal" style="margin-bottom:0">
+      <a href="#contact" class="btn btn-primary">Download catalogues
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#contact" class="btn btn-ghost">Download brochure</a>
+    </div>
+    <div class="placeholder reveal" style="margin-top:24px; max-width:620px">
+      <b>Link your real PDFs</b>
+      Point these buttons at the actual catalogue and brochure PDFs from your Catalogues / Brochure pages.
+    </div>
+  </div>
+</section>
+
+<!-- ─────── TERMS ─────── -->
+<section id="terms" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="sec-tag">Terms &amp; Conditions</div>
+      <h2 class="h">Clear terms, <em>covered.</em></h2></div>
+      <p class="sec-sub">A summary of the key terms — see the full Terms &amp; Conditions for complete detail.</p>
+    </div>
+    <div class="terms-grid reveal">
+      <div class="term"><h4><span class="d"></span> Warranty coverage</h4><p>Two-year protection for hardware against manufacturing defects (excluding wear and tear). Fabrics have UV coating, though colour fastness isn't guaranteed due to environmental factors.</p></div>
+      <div class="term"><h4><span class="d"></span> Warranty conditions</h4><p>Normal use only, with proper SignRISE equipment and storage. Tampering or misuse voids coverage. Only authorised managers can approve claims and returns.</p></div>
+      <div class="term"><h4><span class="d"></span> Returns &amp; repairs</h4><p>Contact us within 7 days for shipping damage and 30 days for standard warranty returns. Return shipping is prepaid by the customer.</p></div>
+      <div class="term"><h4><span class="d"></span> Orders &amp; production</h4><p>Standard production ~14 days from artwork approval. Custom orders require full upfront payment; others a 50% deposit. Cancellations incur full material and labour charges.</p></div>
+      <div class="term"><h4><span class="d"></span> Pricing</h4><p>A built-in 10% discount applies for displaying the SignRISE logo (≈3cm × 7cm, bottom-right). Removing it adds a 10% surcharge.</p></div>
+      <div class="term"><h4><span class="d"></span> Freight &amp; collection</h4><p>Freight charges excluded unless quoted separately. Products become company property if uncollected after 7 days.</p></div>
+    </div>
+    <div class="placeholder reveal" style="margin-top:22px">
+      <b>Link the full Terms &amp; Conditions</b>
+      This is a summary — link to your complete Terms &amp; Conditions page for the binding text.
+    </div>
+  </div>
+</section>
+
+<!-- ─────── CTA ─────── -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Ready to <em>brand it right?</em></h2>
+    <p class="reveal">Tell us about your space and goals and we'll recommend the right Wonda signs and displays to grow your foot traffic, leads and sales.</p>
+    <div class="cta-actions reveal">
+      <a href="#contact" class="btn btn-primary">Get in touch
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="tel:1300361970" class="btn btn-navy">Call 1300 361 970</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── CONTACT ─────── -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="sec-tag">Contact us</div>
+        <h2 class="h" style="margin-bottom:18px">Let's <em>get in touch.</em></h2>
+        <p class="sec-sub" style="margin-bottom:34px">Send us a few details and we'll get back to you with the right products and a quote for your business.</p>
+        <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Sent ✓'">
+          <div class="row2">
+            <div class="field"><label for="name">Name</label><input id="name" type="text" required></div>
+            <div class="field"><label for="email">Email</label><input id="email" type="email" required></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label for="phone">Phone</label><input id="phone" type="tel"></div>
+            <div class="field"><label for="address">Address</label><input id="address" type="text"></div>
+          </div>
+          <div class="field"><label for="msg">Message</label><textarea id="msg" placeholder="Tell us about your space, products or event…"></textarea></div>
+          <button type="submit" class="btn btn-primary" style="justify-self:start; margin-top:6px">Send message
+            <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </form>
+      </div>
+      <aside class="contact-info reveal">
+        <h4>Branditrite</h4>
+        <div class="role">A licensed SignRISE reseller · Australia</div>
+        <div class="line">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+          <div><strong><a href="tel:1300361970">1300 361 970</a></strong> &nbsp;·&nbsp; <a href="tel:0423226215">0423 226 215</a></div>
+        </div>
+        <div class="line">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>
+          <div><strong><a href="mailto:armando@signrise.com">armando@signrise.com</a></strong></div>
+        </div>
+        <div class="line">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 22s7-8 7-12a7 7 0 0 0-14 0c0 4 7 12 7 12z"/></svg>
+          <div><strong>Australia-wide</strong><br><span style="color:var(--muted); font-size:12px">Serving English-speaking countries &amp; the EU</span></div>
+        </div>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.8-2.05 3.7-2.05 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9s-2.04 1.38-2.04 2.8V21h-4z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5a2.5 2.5 0 0 0-1.8 1.8C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ─────── FOOTER ─────── -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="#home" class="brand brand-lg" aria-label="Branditrite home">
+          <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="2.5" y="2.5" width="43" height="43" rx="11" fill="#fff" stroke="#2d368b" stroke-width="2.5"/>
+            <path d="M13 24.5l6.4 6.6L35 16" stroke="#ee3524" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="word">Brand<span class="it">it</span>rite</span>
+        </a>
+        <p class="foot-tag">The world's smartest signs &amp; displays.</p>
+      </div>
+      <div class="foot-col">
+        <h5>About</h5>
+        <a href="#about">About Us</a><a href="#structure">Our Business Structure</a><a href="#studio">Studio &amp; Factory</a><a href="#awards">Awards</a><a href="#testimonials">Testimonials</a><a href="#companies">Companies Using Our Products</a><a href="#terms">Terms &amp; Conditions</a>
+      </div>
+      <div class="foot-col">
+        <h5>Products</h5>
+        <a href="#products">Your Products (Shop)</a><a href="#bestsellers">15 Best Selling Products</a><a href="#replicas">Replicas &amp; Displays</a><a href="#expos">EXPO's &amp; Events</a><a href="#catalogues">Catalogues &amp; Brochure</a>
+      </div>
+      <div class="foot-col">
+        <h5>More</h5>
+        <a href="#gallery">Image Gallery</a><a href="#gallery">Video Gallery</a><a href="#news">News</a><a href="#contact">Contact Us</a><br>
+        <a href="tel:1300361970">1300 361 970</a><a href="tel:0423226215">0423 226 215</a><a href="mailto:armando@signrise.com">armando@signrise.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© <span id="yr"></span> Branditrite.com.au · A licensed SignRISE reseller · All rights reserved</div>
+      <div>The world's smartest signs &amp; displays</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ----- data ----- */
+  const companies = ["Toyota","IBM","Coca-Cola","Dell","Westpac","Mazda","KFC","Lipton","Nestlé","Pepsi","Tempus Wine","Mercedes","BMW","Ford","Samsung","Xbox","GoPro","TomTom","Thule","ASICS","Mizuno","Callaway","John Deere","Jack Daniels","Herbalife","Century 21","JLT","Soda Press","Spur","Rogue","Mountain Designs","Aerogard","Angry Birds","Capitec","Daytona","BBX","BioSport","Castle","Cranbrook","Hansa","Living Choice","Peters","Police Australia","ProveIt","Suttons","Taylor","Tequila Blue","Tyger","Vigo","Waterbrook","Inspire Technology","Mountain Designs"];
+  const marquee = ["Toyota","IBM","Coca-Cola","Dell","Westpac","Mazda","KFC","Lipton","Nestlé","Pepsi","Tempus Wine","Mercedes","Samsung","Ford","BMW"];
+
+  const products = [
+    {n:"Wonda Pull-up", f:"1-Pull-Up-1-1.webp", c:"signs"},
+    {n:"Round Table", f:"", c:"tables"},
+    {n:"Quarter Round", f:"new_table1.jpg", c:"tables"},
+    {n:"Coffee Cup Table", f:"Coffee-Cup.webp", c:"tables"},
+    {n:"Recycling Unit", f:"Recycling-Unit.webp", c:"units"},
+    {n:"Wall Recycling Unit", f:"Wall-Recycling-Unit1.webp", c:"units"},
+    {n:"Street Sign &amp; Hand Sanitizer", f:"Street-Sign-and-Hand-Sanitizer.webp", c:"signs"},
+    {n:"Floor Triangle", f:"Floor-Triangle.webp", c:"triangles"},
+    {n:"Triangle Window Hanging", f:"Triangle-Window-Hanging.webp", c:"triangles"},
+    {n:"Triangle Wall Hanging", f:"Triangle-Wall-Hanging.webp", c:"triangles"},
+    {n:"Triangle Horizontal Window", f:"11-Triangle-Vertical-1-443.webp", c:"triangles"},
+    {n:"Triangle Shop Sign", f:"Triangle-Shop-Sign22.webp", c:"triangles"},
+    {n:"Triangle Car Sign", f:"Triangle-Car-Sign.webp", c:"triangles"},
+    {n:"Coffee or Can Wall Unit", f:"14-Coffee-Can-1-4.webp", c:"units"},
+    {n:"Door Canopy", f:"Door-Canopy1.webp", c:"units"},
+    {n:"TV-Window or Wall Unit", f:"TV-Window-or-Wall-Unit4.webp", c:"units"},
+    {n:"Wonda Round Table with Shelf", f:"", c:"tables", best:1},
+    {n:"Wonda Half Round Table with Shelf", f:"Wonda-Half-Round-Table-with-Shelf-1.webp", c:"tables", best:1},
+    {n:"Wonda Elliptical Shopping Center", f:"", c:"units", best:1},
+    {n:"Wonda Pull Up", f:"", c:"signs", best:1},
+    {n:"Wonda Pull Up 180", f:"Wonda-Pull-Up-180.webp", c:"signs", best:1},
+    {n:"Wonda Street Sign", f:"Wonda-Street-Sign.webp", c:"signs", best:1},
+    {n:"Wonda TV Look", f:"Wonda-TV-Look.webp", c:"units", best:1},
+    {n:"Wonda Wall Hanging", f:"Wonda-Wall-Hanging.webp", c:"units", best:1},
+    {n:"Wonda Triangle", f:"Wonda-Triangle.webp", c:"triangles", best:1},
+    {n:"Wonda Triangle II", f:"Wonda-Triangle1.webp", c:"triangles", best:1},
+    {n:"Wonda Can", f:"Wonda-Can.webp", c:"replicas", best:1},
+    {n:"Wonda Cup", f:"Wonda-Cup1.webp", c:"replicas", best:1},
+    {n:"Wonda Wall", f:"Wonda-Wall.webp", c:"units"},
+    {n:"Wonda Wall II", f:"Wonda-Wall1.webp", c:"units"},
+    {n:"Wonda Tube", f:"Wonda-Tube.webp", c:"replicas"}
+  ];
+  const cats = [["all","All products"],["signs","Signs & Pull-ups"],["tables","Tables"],["triangles","Triangles"],["units","Wall & Units"],["replicas","Replicas"]];
+
+  const testimonials = [
+    {q:"Our Expo booth went up really quickly and our stand looks great. This was a seamless process from ordering to delivery.", n:"Jonathan", co:"Xpresso Coffee"},
+    {q:"The Greenline Turf stand stands out every year. Our SignRise Expo stand is easy to transport, carry and set up.", n:"Ross", co:"Green Line Turf"},
+    {q:"Very happy with the product. He set it up for us with two bags — it took a total of 4 minutes and it looks very, very good.", n:"Mitch", co:"Suttons Waitara"},
+    {q:"The stand here is comprised of a number of components that are very light and very easy to put together.", n:"Howard", co:"Pozzy"},
+    {q:"They are fantastic! If it wasn't for SignRise, we wouldn't have sold half of our products today.", n:"Auggd", co:"Customer"},
+    {q:"The round pop-up stations are brilliant. Portable, compact, impactful and fast to assemble and disassemble.", n:"Cameron", co:"Soda Press Co"},
+    {q:"SignRise Expo units simplified a big area of concern. The units were lightweight and easy to put up.", n:"Richard", co:"HM Technologies"},
+    {q:"With SignRise wide fabric print, we got an even better product than we expected.", n:"Ben", co:"Action Coach"},
+    {q:"We saved on time and money, as well as getting the service and innovative quality.", n:"Neil", co:"CSB"},
+    {q:"Amazing! What a product. Great bang for your buck. Long term it's got to be the most inexpensive marketing out there.", n:"Carlos", co:"Arthouse Studio"},
+    {q:"An excellent product which makes our showroom come alive. Easy process to order.", n:"Samantha", co:"Landa Toyota"},
+    {q:"It's so easy to construct your stand using SignRise. In less than 5 minutes I had it up.", n:"Quick Safety", co:"Quick Safety Pty Ltd"},
+    {q:"We are proud of what we stand for and are always looking for creative ways to express the essence of JLT.", n:"Andrew", co:"JLT"},
+    {q:"We started the business 4 years ago — we never had any stand at all to help with the expos. Now we do.", n:"Richard", co:"Busy Nippers"}
+  ];
+
+  const news = [
+    {d:"Oct 6", t:"Specsavers", x:"Specsavers chose SignRISE's Wonda table pull-up display after extensive searching — meeting every requirement and the upmarket store aesthetic. Rolled out nationwide before Christmas 2023."},
+    {d:"Oct 5", t:"Mohr Indian Restaurant", x:"Backlit signage using SignRISE's patented technology drove a notable increase in first-time customers to this Central Coast restaurant."},
+    {d:"Oct 5", t:"Poolwerx Corporation", x:"Poolwerx became the newest Australian reseller for SignRISE's locally manufactured range, featuring a shopping-centre display install."},
+    {d:"Dec 3", t:"CK Beauty", x:"This Hills-district beauty business completed its Christmas 2024 setup — already reporting “a significant positive change.”"}
+  ];
+
+  /* ----- render helpers ----- */
+  const imgIcon = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>';
+  function pcard(p){
+    return `<article class="pcard" data-cat="${p.c}">
+      <div class="pcard-img">${p.best?'<span class="best">Best seller</span>':''}
+        <div class="ic">${imgIcon}<span class="fn">${p.f||'add image'}</span></div>
+      </div>
+      <div class="pcard-body"><h4>${p.n}</h4>
+        <a href="#contact">View product <span class="arrow">→</span></a></div>
+    </article>`;
+  }
+  document.getElementById('productGrid').innerHTML = products.map(pcard).join('');
+  document.getElementById('bestGrid').innerHTML = products.filter(p=>p.best).map(pcard).join('');
+
+  // tabs
+  const tabsEl = document.getElementById('catTabs');
+  tabsEl.innerHTML = cats.map((c,i)=>`<button class="cat-tab${i===0?' active':''}" data-c="${c[0]}">${c[1]}</button>`).join('');
+  tabsEl.addEventListener('click', e=>{
+    const b=e.target.closest('.cat-tab'); if(!b) return;
+    tabsEl.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active')); b.classList.add('active');
+    const c=b.dataset.c;
+    document.querySelectorAll('#productGrid .pcard').forEach(card=>{
+      card.style.display = (c==='all'||card.dataset.cat===c)?'':'none';
+    });
+  });
+
+  // testimonials
+  document.getElementById('testGrid').innerHTML = testimonials.map(t=>`
+    <div class="tcard"><div class="stars">★★★★★</div><p>“${t.q}”</p>
+      <div class="who"><div class="av">${t.n[0]}</div><div><div class="nm">${t.n}</div><div class="co">${t.co}</div></div></div>
+    </div>`).join('');
+
+  // companies
+  document.getElementById('coList').innerHTML = companies.map(c=>`<span class="co-chip">${c}</span>`).join('');
+
+  // marquee (duplicated for seamless scroll)
+  const mq = marquee.concat(marquee).map(m=>`<span>${m}</span>`).join('');
+  document.getElementById('marquee').innerHTML = mq;
+
+  // news
+  document.getElementById('newsGrid').innerHTML = news.map(p=>`
+    <article class="post"><div class="thumb">${imgIcon}</div>
+      <div class="body"><div class="date">${p.d}</div><h4>${p.t}</h4><p>${p.x}</p></div>
+    </article>`).join('');
+
+  /* ----- interactions ----- */
+  // mobile drawer
+  const drawer=document.getElementById('drawer');
+  document.getElementById('hbtn').onclick=()=>drawer.classList.add('open');
+  document.getElementById('dclose').onclick=()=>drawer.classList.remove('open');
+  drawer.addEventListener('click',e=>{ if(e.target===drawer||e.target.closest('a')) drawer.classList.remove('open'); });
+
+  // dropdown tap support
+  document.querySelectorAll('.menu > li > button').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      const li=btn.parentElement; const open=li.classList.contains('open');
+      document.querySelectorAll('.menu > li').forEach(l=>l.classList.remove('open'));
+      if(!open) li.classList.add('open');
+      e.stopPropagation();
+    });
+  });
+  document.addEventListener('click',()=>document.querySelectorAll('.menu > li').forEach(l=>l.classList.remove('open')));
+
+  // reveal
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  document.querySelectorAll('.hero .reveal').forEach((el,i)=>el.style.transitionDelay=(i*90)+'ms');
+
+  // feature glow tracking
+  document.querySelectorAll('[data-glow]').forEach(card=>{
+    card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');});
+  });
+</script>
+</body>
+</html>
