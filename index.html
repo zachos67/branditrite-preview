@@ -949,6 +949,7 @@
   </div>
 </footer>
 
+<script src="products.js"></script>
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
@@ -956,39 +957,7 @@
   const companies = ["Toyota","IBM","Coca-Cola","Dell","Westpac","Mazda","KFC","Lipton","Nestlé","Pepsi","Tempus Wine","Mercedes","BMW","Ford","Samsung","Xbox","GoPro","TomTom","Thule","ASICS","Mizuno","Callaway","John Deere","Jack Daniels","Herbalife","Century 21","JLT","Soda Press","Spur","Rogue","Mountain Designs","Aerogard","Angry Birds","Capitec","Daytona","BBX","BioSport","Castle","Cranbrook","Hansa","Living Choice","Peters","Police Australia","ProveIt","Suttons","Taylor","Tequila Blue","Tyger","Vigo","Waterbrook","Inspire Technology","Mountain Designs"];
   const marquee = ["Toyota","IBM","Coca-Cola","Dell","Westpac","Mazda","KFC","Lipton","Nestlé","Pepsi","Tempus Wine","Mercedes","Samsung","Ford","BMW"];
 
-  const products = [
-    {n:"Wonda Pull-up", f:"1-Pull-Up-1-1.webp", c:"signs"},
-    {n:"Round Table", f:"", c:"tables"},
-    {n:"Quarter Round", f:"new_table1.jpg", c:"tables"},
-    {n:"Coffee Cup Table", f:"Coffee-Cup.webp", c:"tables"},
-    {n:"Recycling Unit", f:"Recycling-Unit.webp", c:"units"},
-    {n:"Wall Recycling Unit", f:"Wall-Recycling-Unit1.webp", c:"units"},
-    {n:"Street Sign &amp; Hand Sanitizer", f:"Street-Sign-and-Hand-Sanitizer.webp", c:"signs"},
-    {n:"Floor Triangle", f:"Floor-Triangle.webp", c:"triangles"},
-    {n:"Triangle Window Hanging", f:"Triangle-Window-Hanging.webp", c:"triangles"},
-    {n:"Triangle Wall Hanging", f:"Triangle-Wall-Hanging.webp", c:"triangles"},
-    {n:"Triangle Horizontal Window", f:"11-Triangle-Vertical-1-443.webp", c:"triangles"},
-    {n:"Triangle Shop Sign", f:"Triangle-Shop-Sign22.webp", c:"triangles"},
-    {n:"Triangle Car Sign", f:"Triangle-Car-Sign.webp", c:"triangles"},
-    {n:"Coffee or Can Wall Unit", f:"14-Coffee-Can-1-4.webp", c:"units"},
-    {n:"Door Canopy", f:"Door-Canopy1.webp", c:"units"},
-    {n:"TV-Window or Wall Unit", f:"TV-Window-or-Wall-Unit4.webp", c:"units"},
-    {n:"Wonda Round Table with Shelf", f:"", c:"tables", best:1},
-    {n:"Wonda Half Round Table with Shelf", f:"Wonda-Half-Round-Table-with-Shelf-1.webp", c:"tables", best:1},
-    {n:"Wonda Elliptical Shopping Center", f:"", c:"units", best:1},
-    {n:"Wonda Pull Up", f:"", c:"signs", best:1},
-    {n:"Wonda Pull Up 180", f:"Wonda-Pull-Up-180.webp", c:"signs", best:1},
-    {n:"Wonda Street Sign", f:"Wonda-Street-Sign.webp", c:"signs", best:1},
-    {n:"Wonda TV Look", f:"Wonda-TV-Look.webp", c:"units", best:1},
-    {n:"Wonda Wall Hanging", f:"Wonda-Wall-Hanging.webp", c:"units", best:1},
-    {n:"Wonda Triangle", f:"Wonda-Triangle.webp", c:"triangles", best:1},
-    {n:"Wonda Triangle II", f:"Wonda-Triangle1.webp", c:"triangles", best:1},
-    {n:"Wonda Can", f:"Wonda-Can.webp", c:"replicas", best:1},
-    {n:"Wonda Cup", f:"Wonda-Cup1.webp", c:"replicas", best:1},
-    {n:"Wonda Wall", f:"Wonda-Wall.webp", c:"units"},
-    {n:"Wonda Wall II", f:"Wonda-Wall1.webp", c:"units"},
-    {n:"Wonda Tube", f:"Wonda-Tube.webp", c:"replicas"}
-  ];
+  const products = window.BRANDITRITE_PRODUCTS;
   const cats = [["all","All products"],["signs","Signs & Pull-ups"],["tables","Tables"],["triangles","Triangles"],["units","Wall & Units"],["replicas","Replicas"]];
 
   const testimonials = [
@@ -1023,7 +992,7 @@
         <div class="ic">${imgIcon}<span class="fn">${p.f||'add image'}</span></div>
       </div>
       <div class="pcard-body"><h4>${p.n}</h4>
-        <a href="#contact">View product <span class="arrow">→</span></a></div>
+        <a href="product.html?p=${p.slug}">View product <span class="arrow">→</span></a></div>
     </article>`;
   }
   document.getElementById('productGrid').innerHTML = products.map(pcard).join('');
